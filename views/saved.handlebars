@@ -1,0 +1,22 @@
+<div class="container">
+  <div class='container-fluid'>
+        {{#each news}}
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{title}}</div>
+        <div class="panel-body">
+            <a href="{{link}}" target="_blank">Click Here for Full Story</a>
+            <div style='float: right'>
+            <button class="btn btn-danger article-delete">Delete Story</button>
+            <button class="btn btn-info article-info">Story Notes</button>  
+            </div>            
+     
+
+        </div>
+        
+      </div>
+{{/each}}
+    </div>            
+</div>
+
+{{!-- end wrapper container --}}
+</div>

@@ -2,7 +2,7 @@
   "name": "newsscraper",
   "version": "1.0.0",
   "description": "Scrapes News Sites using Mongoose and Cheerio",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "mongojs": "^2.5.0",
     "mongoose": "^5.0.6",
     "request": "^2.83.0"
   }
