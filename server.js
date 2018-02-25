@@ -7,6 +7,7 @@ const request = require("request");
 const cheerio = require("cheerio");
 const bodyParser = require("body-parser");
 const router = express.Router();
+const axios = require('axios');
 
 // Initialize Express
 const app = express();
@@ -39,7 +40,8 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-
+// Require all models
+const models = require("./models/index");
 // TODO: make two more routes
 
 // Route 1
@@ -65,23 +67,8 @@ app.get("/all", function(req, res) {
 // into an empty array in the last class. How do you
 // push it into a MongoDB collection instead?
 /* -/-/-/-/-/-/-/-/-/-/-/-/- */
-
-
-
-app.get("/", function(req, res) {
-  db.missionviejo.find({}, function(err, found) {
-    if (err) {
-      console.log(err);
-    } else {
-      const hbsObject = {
-        news: found
-      };
-      res.render("index", hbsObject);
-    }
-  });
-});
-
 app.get("/saved", function(req, res) {
+  console.log('hey hey hey');
   db.missionviejo.find({}, function(err, found) {
     if (err) {
       console.log(err);
@@ -94,7 +81,7 @@ app.get("/saved", function(req, res) {
   });
 });
 
-app.get("/scrape", function(req, res) {
+app.get("/", function(req, res) {
   request("https://www.ocregister.com/location/california/orange-county/mission-viejo/", function(error, response, html) {
 
     // Load the HTML into cheerio and save it to a variable
@@ -104,28 +91,40 @@ app.get("/scrape", function(req, res) {
     // Select each element in the HTML body from which you want information.
     // NOTE: Cheerio selectors function similarly to jQuery's selectors,
     // but be sure to visit the package's npm page to see how it works
+    let justScraped = [];
+    
     $("a.article-title").each(function(i, element) {
   
-      var title = $(element).attr("title");
-      var link = $(element).attr("href");
+      let title = $(element).attr("title");
+      let link = $(element).attr("href");
       
       if (title && link) {
-        db.missionviejo.save({
-          title: title,
-          link: link
-        },
-        function(error, saved) {
+        // function(error, saved) {
           if (error) {
             console.log(error);
           } else {
-            console.log(saved)
+            
+            justScraped.push({
+              title: title,
+              link: link
+            })
+            
+            const hbsObject = {
+              news: justScraped
+            };
+
           }
-        }      
-      )
+
       }  
       
     });
-  
+    const hbsObject = {
+      news: justScraped
+    };
+    res.render("index", hbsObject);
+         
+    console.log('Number of Stories Scraped: ' + justScraped.length)
+    console.log(Date())
     console.log("Scrape Complete")  
   });
 });

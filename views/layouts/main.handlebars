@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>MV News!</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -24,12 +25,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active">
-            <a href="#">Scraped Stories 
+        <li id="main-li">
+            <a href="/">Main Page 
             {{!-- <span class="sr-only">(current)</span> --}}
             </a>
         </li>
-        <li><a href="#">Saved Scrapes</a></li>
+        <li id="saved-li"><a>Saved Scrapes</a></li>
       </ul>
       <form class="navbar-form navbar-left">
 
@@ -57,7 +58,7 @@
 		{{{ body }}}
 	</div>
 	
-
+<script scr='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js'></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="../assets/js/buttonlogic.js"></script>
 </body>
