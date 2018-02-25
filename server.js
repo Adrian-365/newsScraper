@@ -97,6 +97,7 @@ app.get("/", function(req, res) {
   
       let title = $(element).attr("title");
       let link = $(element).attr("href");
+      let date = Date();
       
       if (title && link) {
         // function(error, saved) {
@@ -106,7 +107,8 @@ app.get("/", function(req, res) {
             
             justScraped.push({
               title: title,
-              link: link
+              link: link,
+              date: date
             })
             
             const hbsObject = {

@@ -1,8 +1,6 @@
 // import axios from 'axios';
 
 $( document ).ready(function() {
-
-    document.getElementById("dateField").innerHTML = `Date Scraped:_____ ${Date()}`;
   console.log("buttonlogic.js is ready!");
 
   $('.scrape-new').on('click', function(event) {
