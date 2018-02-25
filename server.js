@@ -93,41 +93,34 @@ app.get("/", function(req, res) {
     // but be sure to visit the package's npm page to see how it works
     let justScraped = [];
     
-    $("a.article-title").each(function(i, element) {
+    $("article.archive-view").each(function(i, element) {
   
-      let title = $(element).attr("title");
-      let link = $(element).attr("href");
-      let date = Date();
+      let title = $(element).children('figure').children('a').attr("title");
+      let link = $(element).children('figure').children('a').attr("href");
+      let date = ($(element).children('div.article-info').children('header').children('div.entry-meta').children('time').text() || Date());
+      
       
       if (title && link) {
         // function(error, saved) {
           if (error) {
             console.log(error);
-          } else {
-            
+          } else {            
             justScraped.push({
               title: title,
               link: link,
               date: date
-            })
-            
+            })            
             const hbsObject = {
               news: justScraped
             };
-
           }
-
-      }  
-      
+      }        
     });
     const hbsObject = {
       news: justScraped
     };
-    res.render("index", hbsObject);
-         
-    console.log('Number of Stories Scraped: ' + justScraped.length)
-    console.log(Date())
-    console.log("Scrape Complete")  
+    res.render("index", hbsObject);         
+    console.log('Number of Stories Scraped: ' + justScraped.length) 
   });
 });
 

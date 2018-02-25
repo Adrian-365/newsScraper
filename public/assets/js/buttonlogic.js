@@ -6,7 +6,7 @@ $( document ).ready(function() {
   $('.scrape-new').on('click', function(event) {
     event.preventDefault()
     console.log('scrape-new clicked');
-
+    axios.get('/');
 // $.ajax("/scrape", function(){
 //   type: GET
 // })
