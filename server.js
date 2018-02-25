@@ -81,6 +81,7 @@ app.get("/saved", function(req, res) {
 });
 
 app.get("/", function(req, res) {
+  console.log('The "/" route was hit')
   request("https://www.ocregister.com/location/california/orange-county/mission-viejo/", function(error, response, html) {
 
     // Load the HTML into cheerio and save it to a variable
@@ -122,6 +123,16 @@ app.get("/", function(req, res) {
     console.log('Number of Stories Scraped: ' + justScraped.length) 
   });
 });
+
+app.post('/save/:link', function() {
+  db.missionviejo.insert({
+    title: title,
+    link: link,
+    date: date
+  })
+
+});
+
 
 // Listen on port 3000
 app.listen(3000, function() {

@@ -1,4 +1,4 @@
-// import axios from 'axios';
+// import axios from 'axios'
 
 $( document ).ready(function() {
   console.log("buttonlogic.js is ready!");
@@ -6,7 +6,7 @@ $( document ).ready(function() {
   $('.scrape-new').on('click', function(event) {
     event.preventDefault()
     console.log('scrape-new clicked');
-    axios.get('/');
+    axios.get('/')
 // $.ajax("/scrape", function(){
 //   type: GET
 // })
