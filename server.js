@@ -68,7 +68,6 @@ app.get("/all", function(req, res) {
 // push it into a MongoDB collection instead?
 /* -/-/-/-/-/-/-/-/-/-/-/-/- */
 app.get("/saved", function(req, res) {
-  console.log('hey hey hey');
   db.missionviejo.find({}, function(err, found) {
     if (err) {
       console.log(err);
