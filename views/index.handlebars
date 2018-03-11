@@ -8,7 +8,9 @@
         <div class="panel-body">
           <a style='float: left' href="{{link}}" target="_blank">Click Here for Full Story</a>
           <div style='float: right'>
-            <button class="btn btn-info article-save">Save Story</button>  
+            <form action="/saved/:link" method="POST">
+              <button class="btn btn-info article-save">Save Story</button>
+            </form> 
           </div>
         </div>
       </div>
