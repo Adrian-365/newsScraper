@@ -11,6 +11,7 @@ const axios = require('axios');
 
 // Initialize Express
 const app = express();
+const PORT = process.env.PORT || 3000;
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
 // parse application/x-www-form-urlencoded
@@ -126,7 +127,7 @@ app.get('/delete/:id', function(req, res) {
   })  
 })
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+// Listen on port PORT
+app.listen(PORT, function() {
+  console.log("App running on port:"+PORT);
 });
