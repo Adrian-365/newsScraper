@@ -1,19 +1,31 @@
 <div class="container">
   <div class='container-fluid'>
         {{#each news}}
+<form action="/save/:link" method="POST">
       <div class="panel panel-primary">
-        <div class="panel-heading">{{title}}</div>
-        <div class="panel-body">
-            <a href="{{link}}" target="_blank">Click Here for Full Story</a>
-            <div style='float: right'>
-            <button class="btn btn-danger article-delete">Delete Story</button>
-            <button class="btn btn-info article-note">Story Notes</button>  
-            </div>            
-     
-
+        <div class="panel-heading">
+          <div class='row'>
+            <div class='article-title col-md-9'>
+              {{title}}
+            </div>          
+            <div style='float: right' class='article-date col-md-3'>{{date}}</div>
+          </div>
         </div>
         
+        <div class="panel-body">
+          <a style='float: left' class='article-link' href="{{link}}" target="_blank">Click Here for Full Story</a>
+          <div style='float: right'>            
+            <button class="btn btn-danger article-delete" data-id={{_id}}>Delete Story</button>
+            <button class="btn btn-info article-note">Story Notes</button>             
+          </div>          
+        </div>
       </div>
+    </form> 
+ 
+                     
+     
+
+
 {{/each}}
     </div>            
 </div>

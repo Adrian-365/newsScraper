@@ -42,31 +42,8 @@ db.on("error", function(error) {
 
 // Require all models
 const models = require("./models/index");
-// TODO: make two more routes
 
-// Route 1
-// =======
-// This route will retrieve all of the data
-// from the scrapedData collection as a json (this will be populated
-// by the data you scrape using the next route)
-app.get("/all", function(req, res) {
-  db.missionviejo.find({}, function(err, found) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(found);
-    }
-  });
-});
-// Route 2
-// =======
-// When you visit this route, the server will
-// scrape data from the site of your choice, and save it to
-// MongoDB.
-// TIP: Think back to how you pushed website data
-// into an empty array in the last class. How do you
-// push it into a MongoDB collection instead?
-/* -/-/-/-/-/-/-/-/-/-/-/-/- */
+
 app.get("/saved", function(req, res) {
   db.missionviejo.find({}, function(err, found) {
     if (err) {
@@ -75,6 +52,7 @@ app.get("/saved", function(req, res) {
       const hbsObject = {
         news: found
       };
+      // console.log(hbsObject)
       res.render("saved", hbsObject);
     }
   });
@@ -124,15 +102,29 @@ app.get("/", function(req, res) {
   });
 });
 
-app.post('/save/:link', function() {
+app.post('/save/:link', function(req, res) {  
   db.missionviejo.insert({
-    title: title,
-    link: link,
-    date: date
+    title: req.body.title,
+    date: req.body.date,
+    link: req.body.link
   })
 
 });
 
+
+//DELETE ROUTE!!
+app.get('/delete/:id', function(req, res) {
+  db.missionviejo.remove(
+    {
+      _id: mongojs.ObjectID(req.params.id)
+    },
+   function(err) {
+    if (err) throw err;
+  
+    // we have deleted the user
+   
+  })  
+})
 
 // Listen on port 3000
 app.listen(3000, function() {
