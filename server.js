@@ -28,7 +28,7 @@ var MONGODB_URI =
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
-  //   useMongoClient: true
+    useMongoClient: true
 });
 
 // Database configuration
