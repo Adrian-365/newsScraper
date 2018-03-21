@@ -36,7 +36,7 @@ let databaseUrl = "news";
 let collections = ["missonviejo"];
 
 // Hook mongojs configuration to the db variable
-const db = mongojs(databaseUrl, collections);
+const db = mongojs(MONGODB_URI, collections);
 db.on("error", function(error) {
   console.log("Database Error:", error);
 });
