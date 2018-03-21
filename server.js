@@ -23,20 +23,20 @@ app.set("view engine", "handlebars");
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
+console.log(process.env.MONGODB_URI, "***************************");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-    useMongoClient: true
-});
+// mongoose.connect(MONGODB_URI, {
+//     useMongoClient: true
+// });
 
 // Database configuration
 let databaseUrl = "news";
 let collections = ["missonviejo"];
 
 // Hook mongojs configuration to the db variable
-const db = mongojs(databaseUrl, collections);
+const db = mongojs(MONGODB_URI, collections);
 db.on("error", function(error) {
   console.log("Database Error:", error);
 });
@@ -115,15 +115,14 @@ app.post('/save/:link', function(req, res) {
 
 //DELETE ROUTE!!
 app.get('/delete/:id', function(req, res) {
+  console.log("Deleting");
   db.missionviejo.remove(
     {
       _id: mongojs.ObjectID(req.params.id)
     },
    function(err) {
-    if (err) throw err;
-  
-    // we have deleted the user
-   
+    if (err) res.status(500).json(err);
+    res.send("done")
   })  
 })
 

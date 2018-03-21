@@ -54,8 +54,14 @@ $('.article-delete').on('click', function(event) {
      // Send the POST request.
      $.ajax({ 
         type: "GET",
-        url: '/delete/'+_id
-      })      
+        url: '/delete/'+_id,
+        success: function(resp) {
+          window.location.reload();
+        },
+        error: function(err) {
+          console.error(err);
+        }
+      }) 
 });
 
 
