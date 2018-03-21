@@ -115,12 +115,14 @@ app.post('/save/:link', function(req, res) {
 
 //DELETE ROUTE!!
 app.get('/delete/:id', function(req, res) {
+  console.log("Deleting");
   db.missionviejo.remove(
     {
       _id: mongojs.ObjectID(req.params.id)
     },
    function(err) {
     if (err) res.status(500).json(err);
+    res.send("done")
   })  
 })
 
