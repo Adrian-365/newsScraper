@@ -120,7 +120,7 @@ app.get('/delete/:id', function(req, res) {
       _id: mongojs.ObjectID(req.params.id)
     },
    function(err) {
-    if (err) throw err;
+    if (err) res.status(500).json(err);
   })  
 })
 
