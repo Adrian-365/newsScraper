@@ -55,7 +55,10 @@ $('.article-delete').on('click', function(event) {
      $.ajax({ 
         type: "GET",
         url: '/delete/'+_id
-      })      
+      })
+      .then(function(resp) {
+        window.location.reload();
+      })     
 });
 
 

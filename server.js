@@ -27,9 +27,9 @@ var MONGODB_URI =
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-    useMongoClient: true
-});
+// mongoose.connect(MONGODB_URI, {
+//     useMongoClient: true
+// });
 
 // Database configuration
 let databaseUrl = "news";
@@ -121,9 +121,6 @@ app.get('/delete/:id', function(req, res) {
     },
    function(err) {
     if (err) throw err;
-  
-    // we have deleted the user
-   
   })  
 })
 
