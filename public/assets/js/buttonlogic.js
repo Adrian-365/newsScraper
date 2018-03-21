@@ -58,7 +58,10 @@ $('.article-delete').on('click', function(event) {
       })
       .then(function(resp) {
         window.location.reload();
-      })     
+      })
+      .catch(function(err) {
+        console.error(err);
+      })    
 });
 
 
